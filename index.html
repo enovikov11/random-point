@@ -1,0 +1,35 @@
+<canvas id="canvas" width="700" height="700"></canvas>
+
+<script>
+    let x = 0, y = 0;
+    const canvas = document.querySelector('#canvas'), ctx = canvas.getContext('2d');
+    const COLORS = {
+        BACKGROUND: 'black',
+        PAINT: 'white',
+        POINT: 'grey'
+    }, SIZE = 700, POINT_RADIUS = 3, ITERATIONS = 200;
+
+    ctx.fillStyle = COLORS.BACKGROUND;
+    ctx.fillRect(0, 0, SIZE, SIZE);
+
+    function animate() {
+        for (let i = 0; i < ITERATIONS; i++) {
+            ctx.beginPath();
+            ctx.fillStyle = COLORS.PAINT;
+            ctx.arc(SIZE / 2 + POINT_RADIUS * x, SIZE / 2 + POINT_RADIUS * y, POINT_RADIUS, 0, 2 * Math.PI);
+            ctx.fill();
+
+            x += (Math.random() - 0.5);
+            y += (Math.random() - 0.5);
+
+            ctx.beginPath();
+            ctx.fillStyle = COLORS.POINT;
+            ctx.arc(SIZE / 2 + POINT_RADIUS * x, SIZE / 2 + POINT_RADIUS * y, POINT_RADIUS, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
