@@ -9,7 +9,7 @@
 
     <script>
         function animate() {
-            document.body.innerHTML = `<div style="font-size:2em;">${Date.now().toString(2).replace(/0/g, '□').replace(/1/g, '■')}</div>`
+            document.body.innerHTML = `<div style="font-size:2em;">${Date.now().toString(2).replace(/0/g, '□').replace(/1/g, '■').replaceAll(/(.{3})/g, '$1<br/>')}</div>`
 
             requestAnimationFrame(animate);
         }
